@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriGain</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        header {
+            background-color: #47897fd5;
+            color: rgb(0, 0, 0);
+            padding: 20px 0;
+            font-weight: bolder;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: none;
+        }
+
+        .nav-links a {
+            color: rgb(254, 247, 247);
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        .cta-buttons a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        .button {
+            padding: 10px 20px;
+            border: 2px solid white;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: white;
+            color: #001901;
+        }
+        .search-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 0;
+            background-color: #f4f4f4;
+        }
+
+        .search-form {
+            display: flex;
+            gap: 10px;
+        }
+
+        .search-input {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 300px;
+        }
+
+        .search-button, .speak-button, .language-toggle {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #2d7c76;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-button:hover, .speak-button:hover, .language-toggle:hover {
+            background-color: #33b639;
+        }
+        .hero {
+            background-image: url('https://wallpapercave.com/wp/wp1886334.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            color: white;
+            max-width: 600px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+        .hero a{
+            text-decoration: none;
+            color: #000;
+            font-weight: bolder;
+        }
+        .logos {
+            background-color: #f4f4f4;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .logos h2 {
+            margin-bottom: 30px;
+        }
+
+        .logo-grid {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo-item {
+            width: 120px;
+            height: 80px;
+            background-color: rgb(215, 204, 204);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+        }
+
+        .logo-item a {
+            text-decoration: none;
+            color: #000;
+            font-weight: bolder;
+        }
+        .features {
+            padding: 60px 0;
+        }
+
+        .features h2 {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-item {
+            background-color: white;
+            border-radius: 5px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        .about {
+            background-color: #f4f4f4;
+            padding: 60px 0;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-image {
+            height: 400px;
+            background-image: url('https://www.philrice.gov.ph/wp-content/uploads/2019/03/rcef-picture.jpg');
+            background-size: cover;
+            background-position: center;
+            border-radius: 5px;
+        }
+        .products {
+            padding: 60px 0;
+        }
+
+        .products-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .accordion {
+            list-style-type: none;
+        }
+
+        .accordion-item {
+            border-bottom: 1px solid #ddd;
+        }
+
+        .accordion-header {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .accordion-content {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .accordion-content.active {
+            max-height: 1000px;
+            padding: 20px;
+        }
+
+        .products-image {
+            height: 400px;
+            background-image: url('https://th.bing.com/th/id/OIP.DjudtImYiLWN0axt_dgVuAHaE8?rs=1&pid=ImgDetMain');
+            background-size: cover;
+            background-position: center;
+            border-radius: 5px;
+        }
+        .testimonials {
+            background-color: #f4f4f4;
+            padding: 60px 0;
+        }
+
+        .testimonials h2 {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-item {
+            background-color: white;
+            border-radius: 5px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonial-content {
+            margin-bottom: 20px;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .author-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+            background-color: #4CAF50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .author-info h4 {
+            margin-bottom: 5px;
+        }
+
+        .star-rating {
+            color: #FFD700;
+        }
+        .contact {
+            padding: 60px 0;
+        }
+
+        .contact h2 {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        form {
+            display: grid;
+            gap: 20px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        button[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        footer {
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 20px 0;
+        }
+        @media (min-width: 768px) {
+            .nav-links {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo" id="site-title">AgriGain</div>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#services">Services</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="cta-buttons">
+                <a href="index2.html">Shop Now</a>
+                <a href="#" class="button">Get Started</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="search-container">
+        <form class="search-form" id="search-form">
+            <input type="text" id="search-input" class="search-input" placeholder="Search">
+            <button type="submit" class="search-button" id="search-button">Search</button>
+            <button type="button" class="speak-button" id="speak-button">Speak</button>
+        </form>
+        <button class="language-toggle" id="language-toggle">हिंदी</button>
+    </div>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>तुम्हारा भरोसेमंद स्रोत अच्छी फसलों के लिए।</h1>
+                <p>हमारे किसान समुदाय में शामिल हों और स्थायी कृषि को समर्थन देने वाले स्थानीय उत्पादों की ताजगी का अनुभव करें।</p>
+                <a href="index2.html" class="button">Shop Now</a>
+                <a href="mandi.html" class="button">Explore More</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="logos">
+        <div class="container">
+            <h2>Quality Crops Delivered Fresh Daily</h2>
+            <div class="logo-grid">
+                <div class="logo-item"><a href="mandi.html">Mandi-Price</a></div>
+                <div class="logo-item"><a href="page2.html">Sell</a></div>
+                <div class="logo-item"><a href="page3.html">Crop-Planing</a></div>
+                <div class="logo-item"><a href="kisan.html">Kisan-Connect</a></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="services">
+        <div class="container">
+            <h2>Quality Farm Products for You</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">🥕</div>
+                    <h3>Fresh Produce</h3>
+                    <p>Our fresh produce is sourced directly from local farms, ensuring quality and taste.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">♻️</div>
+                    <h3>Eco-Friendly Packaging</h3>
+                    <p>We use sustainable packaging to protect the environment while delivering freshness.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🤝</div>
+                    <h3>Community Support</h3>
+                    <p>Join our community initiatives to support local farmers and engage with agriculture.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🌾</div>
+                    <h3>Crop Buying</h3>
+                    <p>Find the best crops to buy at competitive prices from our trusted local farmers.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📚</div>
+                    <h3>Farmers' Resources</h3>
+                    <p>Access a wealth of resources and tools designed for farmers' success.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🍎</div>
+                    <h3>Local Produce</h3>
+                    <p>Taste the difference with locally-grown produce from our trusted farmers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div>
+                    <h2>Experience Local Farming With Our Unique Offerings</h2>
+                    <p>Explore the benefits of buying local and supporting our farmers for healthier communities.</p>
+                    <ul>
+                        <li>Locally Sourced Goods Every Day</li>
+                        <li>Promoting Sustainability in Agriculture</li>
+                        <li>Supporting Family Farms Across the Region</li>
+                    </ul>
+                </div>
+                <div class="about-image"></div>
+            </div>
+        </div>
+    </section>
+
+    <section  class="products">
+        <div class="container">
+            <div class="products-content">
+                <div>
+                    <h2>High-Quality Crops and Agricultural Supplies for Farmers</h2>
+                    <p>Offering premium crops, tools, and support for dedicated farmers.</p>
+                    <ul class="accordion">
+                        <li class="accordion-item">
+                            <div class="accordion-header">
+                                Fresh Local Produce
+                                <span class="accordion-icon">+</span>
+                            </div>
+                            <div class="accordion-content">
+                                <p>Fresh produce straight from our local farms, ensuring quality and flavor.</p>
+                            </div>
+                        </li>
+                        <li class="accordion-item">
+                            <div class="accordion-header">
+                                Organic Farming Supplies
+                                <span class="accordion-icon">+</span>
+                            </div>
+                            <div class="accordion-content">
+                                <p>Eco-friendly and organic farming supplies to support sustainable agriculture.</p>
+                            </div>
+                        </li>
+                        <li class="accordion-item">
+                            <div class="accordion-header">
+                                Expert Agricultural Advice
+                                <span class="accordion-icon">+</span>
+                            </div>
+                            <div class="accordion-content">
+                                <p>Access to expert advice and resources for successful farming practices.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="products-image"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h2>What Our Customers Say About Us</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-item">
+                    <div class="testimonial-content">
+                        <p>Farmers Market transformed my crop yield significantly. Highly reliable supplies!</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-image">VC</div>
+                        <div class="author-info">
+                            <h4>Rohan Thakur</h4>
+                            <div class="star-rating">★★★★</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-item">
+                    <div class="testimonial-content">
+                        <p>Exceptional service and quality products, truly a farmer's best partner!</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-image">VC</div>
+                        <div class="author-info">
+                            <h4>Rohan Sharma</h4>
+                            <div class="star-rating">★★★★★</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-item">
+                    <div class="testimonial-content">
+                        <p>Outstanding advice and resources helped my farm thrive. Highly recommend!</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-image">VC</div>
+                        <div class="author-info">
+                            <h4>Payal Jain</h4>
+
+                            <div class="star-rating">★★★★★</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2>Get in Touch</h2>
+            <div class="contact-content">
+                <form id="contact-form">
+                    <input type="text" name="name" placeholder="First Name" required>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <textarea name="message" placeholder="Type your message...." required></textarea>
+                    <div>
+                        <input type="checkbox" id="terms" required>
+                        <label for="terms">I accept the terms</label>
+                    </div>
+                    <button type="submit">Submit</button>
+                </form>
+                <div>
+                    <h3>Email</h3>
+                    <p>contact@farmersmarket.com</p>
+                    <p>info@farmersmarket.com</p>
+                    <h3>Phone</h3>
+                    <p>6234567890</p>
+                    <p>9087654321</p>
+                    <h3>Location</h3>
+                    <p>2 - Phagwara Road, Punjab</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 AgriGain. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const languages = {
+            en: {
+                title: "AgriGain",
+                search: "Search",
+                speak: "Speak",
+                languageToggle: "हिंदी",
+            },
+            hi: {
+                title: "एग्रीगेन",
+                search: "खोज",
+                speak: "बोलें",
+                languageToggle: "English",
+            }
+        };
+
+        let currentLanguage = 'en';
+
+        const languageToggle = document.getElementById('language-toggle');
+        const siteTitle = document.getElementById('site-title');
+        const searchInput = document.getElementById('search-input');
+        const searchButton = document.getElementById('search-button');
+        const speakButton = document.getElementById('speak-button');
+
+        languageToggle.addEventListener('click', () => {
+            currentLanguage = currentLanguage === 'en' ? 'hi' : 'en';
+            updateLanguage();
+        });
+
+        function updateLanguage() {
+            const lang = languages[currentLanguage];
+            siteTitle.textContent = lang.title;
+            searchInput.placeholder = lang.search;
+            searchButton.textContent = lang.search;
+            speakButton.textContent = lang.speak;
+            languageToggle.textContent = lang.languageToggle;
+        }
+        const searchForm = document.getElementById('search-form');
+
+        if ('webkitSpeechRecognition' in window) {
+            const recognition = new webkitSpeechRecognition();
+            recognition.continuous = false;
+            recognition.interimResults = false;
+
+            speakButton.addEventListener('click', () => {
+                recognition.lang = currentLanguage === 'en' ? 'en-US' : 'hi-IN';
+                recognition.start();
+            });
+
+            recognition.onresult = (event) => {
+                const transcript = event.results[0][0].transcript;
+                searchInput.value = transcript;
+            };
+
+            recognition.onerror = (event) => {
+                console.error('Speech recognition error', event.error);
+            };
+        } else {
+            speakButton.style.display = 'none';
+        }
+
+        // Search functionality
+        searchForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const searchTerm = searchInput.value;
+            // Implement search functionality here
+            console.log('Searching for:', searchTerm);
+            alert(`Searching for: ${searchTerm}`);
+        });
+
+        // Accordion functionality
+        const accordionItems = document.querySelectorAll('.accordion-item');
+        accordionItems.forEach(item => {
+            const header = item.querySelector('.accordion-header');
+            const content = item.querySelector('.accordion-content');
+            const icon = item.querySelector('.accordion-icon');
+
+            header.addEventListener('click', () => {
+                content.classList.toggle('active');
+                icon.textContent = content.classList.contains('active') ? '-' : '+';
+            });
+        });
+
+        // Form submission
+        const form = document.getElementById('contact-form');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const formData = new FormData(form);
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const message = formData.get('message');
+
+            // Here you would typically send this data to a server
+            console.log('Form submitted:', { name, email, message });
+            alert('Thank you for your message. We will get back to you soon!');
+            form.reset();
+        });
+    </script>
+</body>
+</html>
